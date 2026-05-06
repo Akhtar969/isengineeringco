@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I.S. Engineering Co. – Flanges · Fittings · Pipes</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS VARIABLES ===== */
+:root {
+  --green-dark: #0a2e0a;
+  --green-mid: #1a5c1a;
+  --green-bright: #2d8c2d;
+  --green-lime: #7ec82a;
+  --silver: #c8d4d8;
+  --silver-light: #e8eef0;
+  --white: #ffffff;
+  --black: #060e06;
+  --gray-dark: #111a11;
+  --gray-mid: #1e2c1e;
+  --steel: #8a9ba0;
+  --accent: #b8e04a;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-ui: 'Rajdhani', sans-serif;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--black); color: var(--white); overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+/* ===== PAGE SYSTEM ===== */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  background: rgba(6, 14, 6, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(126, 200, 42, 0.2);
+  padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 12px; cursor: pointer;
+}
+.nav-logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--green-mid), var(--green-lime));
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 800; color: white;
+  font-family: var(--font-display);
+  box-shadow: 0 0 20px rgba(126, 200, 42, 0.4);
+}
+.nav-logo-text { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.nav-logo-text span { color: var(--green-lime); }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-link {
+  font-family: var(--font-ui); font-size: 14px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 8px 16px; border-radius: 4px; cursor: pointer;
+  transition: all 0.3s ease; color: var(--silver);
+  border: 1px solid transparent;
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--green-lime); border-color: rgba(126, 200, 42, 0.3);
+  background: rgba(126, 200, 42, 0.08);
+}
+.nav-cta {
+  background: linear-gradient(135deg, var(--green-bright), var(--green-lime));
+  color: var(--black) !important; border: none !important;
+  font-weight: 700; padding: 8px 20px;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(126, 200, 42, 0.5); }
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: var(--silver); transition: all 0.3s; }
+
+/* ===== HERO / CAROUSEL ===== */
+.hero {
+  height: 100vh; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-slides { width: 100%; height: 100%; position: absolute; inset: 0; }
+.hero-slide {
+  position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease;
+  display: flex; align-items: center;
+}
+.hero-slide.active { opacity: 1; }
+.hero-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(110deg, rgba(6,14,6,0.92) 0%, rgba(6,14,6,0.7) 50%, rgba(6,14,6,0.3) 100%);
+}
+/* Slide backgrounds as SVG pattern simulations */
+.slide-1 .hero-bg { background-color: #0a1a0a; background-image: radial-gradient(ellipse at 80% 50%, rgba(45,140,45,0.3) 0%, transparent 60%), url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a5c1a' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+.slide-2 .hero-bg { background-color: #0d1f0d; background-image: radial-gradient(ellipse at 20% 60%, rgba(126,200,42,0.2) 0%, transparent 55%); }
+.slide-3 .hero-bg { background-color: #0a150a; background-image: radial-gradient(ellipse at 70% 30%, rgba(45,140,45,0.25) 0%, transparent 60%); }
+
+.hero-content {
+  position: relative; z-index: 2; max-width: 700px;
+  padding: 40px 60px; margin-left: 5%;
+}
+.hero-eyebrow {
+  font-family: var(--font-ui); font-size: 13px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--green-lime);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.hero-eyebrow::before {
+  content: ''; width: 40px; height: 2px; background: var(--green-lime);
+}
+.hero-title {
+  font-family: var(--font-display); font-size: clamp(42px, 6vw, 82px);
+  font-weight: 800; line-height: 0.95; letter-spacing: -1px;
+  margin-bottom: 24px; color: white;
+}
+.hero-title .accent { color: var(--green-lime); display: block; }
+.hero-subtitle {
+  font-size: 16px; line-height: 1.7; color: var(--silver);
+  max-width: 500px; margin-bottom: 36px;
+}
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  font-family: var(--font-ui); font-weight: 700; font-size: 14px;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 14px 32px; border-radius: 3px; cursor: pointer;
+  background: linear-gradient(135deg, var(--green-bright), var(--green-lime));
+  color: var(--black); border: none; transition: all 0.3s;
+  box-shadow: 0 4px 30px rgba(126,200,42,0.35);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(126,200,42,0.55); }
+.btn-secondary {
+  font-family: var(--font-ui); font-weight: 600; font-size: 14px;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 14px 32px; border-radius: 3px; cursor: pointer;
+  background: transparent; color: white;
+  border: 1px solid rgba(255,255,255,0.3); transition: all 0.3s;
+}
+.btn-secondary:hover { border-color: var(--green-lime); color: var(--green-lime); }
+
+.hero-indicators {
+  position: absolute; bottom: 36px; left: 60px; display: flex; gap: 10px; z-index: 10;
+}
+.hero-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.4s;
+}
+.hero-dot.active { background: var(--green-lime); width: 28px; border-radius: 4px; }
+
+.hero-stats {
+  position: absolute; bottom: 36px; right: 60px; display: flex; gap: 40px; z-index: 10;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: var(--font-display); font-size: 32px; font-weight: 800;
+  color: var(--green-lime); line-height: 1;
+}
+.hero-stat-label { font-size: 11px; color: var(--steel); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+/* Slide-in animation */
+.hero-slide.active .hero-content > * {
+  animation: slideUp 0.8s ease forwards;
+}
+.hero-slide.active .hero-eyebrow { animation-delay: 0.1s; opacity: 0; }
+.hero-slide.active .hero-title { animation-delay: 0.25s; opacity: 0; }
+.hero-slide.active .hero-subtitle { animation-delay: 0.4s; opacity: 0; }
+.hero-slide.active .hero-btns { animation-delay: 0.55s; opacity: 0; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SECTION HEADERS ===== */
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-label {
+  font-family: var(--font-ui); font-size: 12px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--green-lime); margin-bottom: 14px;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+}
+.section-label::before, .section-label::after {
+  content: ''; flex: 1; max-width: 60px; height: 1px; background: rgba(126,200,42,0.4);
+}
+.section-title {
+  font-family: var(--font-display); font-size: clamp(32px, 4vw, 54px);
+  font-weight: 800; letter-spacing: -0.5px; line-height: 1;
+}
+.section-title .hl { color: var(--green-lime); }
+.section-desc { font-size: 16px; color: var(--steel); max-width: 600px; margin: 16px auto 0; line-height: 1.7; }
+
+/* ===== ABOUT SECTION (HOME) ===== */
+.about-home {
+  padding: 100px 60px;
+  background: linear-gradient(180deg, var(--black) 0%, var(--gray-dark) 100%);
+}
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
+.about-visual {
+  position: relative; aspect-ratio: 1; max-width: 500px;
+}
+.about-main-img {
+  width: 100%; height: 100%; border-radius: 4px; overflow: hidden;
+  background: linear-gradient(135deg, var(--green-dark), var(--gray-mid));
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(126,200,42,0.2);
+}
+.about-badge {
+  position: absolute; bottom: -20px; right: -20px;
+  width: 120px; height: 120px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-bright), var(--green-lime));
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: 0 8px 40px rgba(126,200,42,0.5);
+}
+.about-badge-num { font-family: var(--font-display); font-size: 36px; font-weight: 800; color: var(--black); line-height: 1; }
+.about-badge-text { font-size: 10px; font-weight: 700; color: var(--black); letter-spacing: 1px; text-align: center; }
+.about-text h2 { font-family: var(--font-display); font-size: 42px; font-weight: 800; line-height: 1.05; margin-bottom: 20px; }
+.about-text h2 .hl { color: var(--green-lime); }
+.about-text p { color: var(--steel); line-height: 1.8; margin-bottom: 16px; }
+.about-features { margin: 28px 0; display: flex; flex-direction: column; gap: 14px; }
+.about-feature {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px; background: rgba(255,255,255,0.03);
+  border-left: 3px solid var(--green-lime); border-radius: 0 4px 4px 0;
+}
+.about-feature-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.about-feature h4 { font-family: var(--font-ui); font-weight: 600; margin-bottom: 4px; }
+.about-feature p { font-size: 13px; color: var(--steel); margin: 0; }
+
+/* ===== PRODUCTS SECTION (HOME) ===== */
+.products-home {
+  padding: 100px 60px;
+  background: var(--gray-dark);
+}
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+.product-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(126,200,42,0.1);
+  border-radius: 6px; overflow: hidden;
+  transition: all 0.4s ease; cursor: pointer;
+  position: relative; group: true;
+}
+.product-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(126,200,42,0.4);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(126,200,42,0.1);
+}
+.product-img {
+  height: 200px; overflow: hidden;
+  background: linear-gradient(135deg, #0d200d, #1a3a1a);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.product-img-icon { font-size: 64px; opacity: 0.6; }
+.product-img::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
+  background: linear-gradient(transparent, rgba(10,20,10,0.8));
+}
+.product-info { padding: 24px; }
+.product-tag {
+  font-family: var(--font-ui); font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--green-lime); margin-bottom: 8px;
+}
+.product-name { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+.product-desc { font-size: 13px; color: var(--steel); line-height: 1.6; margin-bottom: 16px; }
+.product-specs { display: flex; gap: 8px; flex-wrap: wrap; }
+.spec-chip {
+  font-size: 11px; padding: 4px 10px; border-radius: 20px;
+  background: rgba(126,200,42,0.1); color: var(--green-lime);
+  border: 1px solid rgba(126,200,42,0.2); font-family: var(--font-ui);
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials {
+  padding: 100px 60px;
+  background: linear-gradient(180deg, var(--gray-dark) 0%, var(--black) 100%);
+}
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+.testimonial-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(126,200,42,0.1);
+  border-radius: 6px; padding: 32px;
+  transition: all 0.3s;
+}
+.testimonial-card:hover { border-color: rgba(126,200,42,0.3); transform: translateY(-4px); }
+.testimonial-stars { color: var(--green-lime); font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
+.testimonial-text { font-size: 14px; color: var(--silver-light); line-height: 1.8; margin-bottom: 20px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-mid), var(--green-lime));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 16px; font-weight: 700; color: white;
+  flex-shrink: 0;
+}
+.testimonial-name { font-family: var(--font-ui); font-weight: 600; font-size: 15px; }
+.testimonial-company { font-size: 12px; color: var(--steel); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--green-dark);
+  border-top: 1px solid rgba(126,200,42,0.2);
+  padding: 60px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 60px; max-width: 1200px; margin: 0 auto 40px;
+}
+.footer-brand-name { font-family: var(--font-display); font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+.footer-brand-name span { color: var(--green-lime); }
+.footer-tagline { font-size: 12px; color: var(--steel); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.footer-brand-desc { font-size: 13px; color: var(--steel); line-height: 1.7; }
+.footer-heading { font-family: var(--font-ui); font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green-lime); margin-bottom: 20px; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { font-size: 13px; color: var(--steel); transition: color 0.2s; cursor: pointer; }
+.footer-links a:hover { color: var(--green-lime); }
+.footer-contact-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
+.footer-contact-icon { color: var(--green-lime); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.footer-contact-text { font-size: 13px; color: var(--steel); line-height: 1.5; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 28px; max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-copy { font-size: 12px; color: var(--steel); }
+.footer-socials { display: flex; gap: 10px; }
+.social-btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(126,200,42,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--steel); transition: all 0.3s; cursor: pointer;
+}
+.social-btn:hover { background: var(--green-lime); color: var(--black); border-color: var(--green-lime); }
+
+/* ===== PAGE HERO BANNER ===== */
+.page-hero {
+  padding: 140px 60px 80px;
+  background: linear-gradient(135deg, var(--black) 0%, var(--green-dark) 50%, var(--black) 100%);
+  position: relative; overflow: hidden;
+  text-align: center;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(126,200,42,0.08) 0%, transparent 70%);
+}
+.page-hero-label {
+  font-family: var(--font-ui); font-size: 12px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--green-lime); margin-bottom: 16px;
+}
+.page-hero-title { font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px); font-weight: 800; }
+.page-hero-title .hl { color: var(--green-lime); }
+.breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; font-size: 13px; color: var(--steel); }
+.breadcrumb span { color: var(--green-lime); }
+
+/* ===== ABOUT PAGE ===== */
+.about-page { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+.about-story { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 80px; }
+.about-story-text h3 { font-family: var(--font-display); font-size: 36px; font-weight: 800; margin-bottom: 20px; }
+.about-story-text h3 .hl { color: var(--green-lime); }
+.about-story-text p { color: var(--steel); line-height: 1.8; margin-bottom: 14px; font-size: 15px; }
+.about-visual-box {
+  background: linear-gradient(135deg, var(--green-dark), var(--gray-mid));
+  border: 1px solid rgba(126,200,42,0.2); border-radius: 8px;
+  padding: 40px; min-height: 360px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: 20px;
+}
+.about-visual-box .big-icon { font-size: 80px; opacity: 0.7; }
+.about-visual-box .big-text { font-family: var(--font-display); font-size: 18px; font-weight: 700; text-align: center; color: var(--silver); }
+.values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 80px; }
+.value-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(126,200,42,0.1);
+  border-radius: 6px; padding: 28px; text-align: center; transition: all 0.3s;
+}
+.value-card:hover { border-color: rgba(126,200,42,0.4); transform: translateY(-4px); }
+.value-icon { font-size: 36px; margin-bottom: 14px; }
+.value-title { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--green-lime); margin-bottom: 8px; }
+.value-desc { font-size: 13px; color: var(--steel); line-height: 1.6; }
+.team-section { text-align: center; margin-bottom: 80px; }
+.team-section h3 { font-family: var(--font-display); font-size: 36px; font-weight: 800; margin-bottom: 14px; }
+.team-section h3 .hl { color: var(--green-lime); }
+.team-section p { color: var(--steel); max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.team-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(126,200,42,0.1);
+  border-radius: 6px; padding: 32px 24px; text-align: center;
+}
+.team-avatar {
+  width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 16px;
+  background: linear-gradient(135deg, var(--green-mid), var(--green-lime));
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 28px; font-weight: 800; color: white;
+  box-shadow: 0 0 30px rgba(126,200,42,0.3);
+}
+.team-name { font-family: var(--font-ui); font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.team-role { font-size: 13px; color: var(--green-lime); margin-bottom: 12px; }
+.team-bio { font-size: 13px; color: var(--steel); line-height: 1.6; }
+
+/* ===== PRODUCTS PAGE ===== */
+.products-page { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+.products-filter { display: flex; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+.filter-btn {
+  font-family: var(--font-ui); font-size: 13px; font-weight: 600; letter-spacing: 1px;
+  padding: 8px 20px; border-radius: 4px; cursor: pointer;
+  background: transparent; color: var(--steel);
+  border: 1px solid rgba(126,200,42,0.2); transition: all 0.3s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: rgba(126,200,42,0.1); color: var(--green-lime);
+  border-color: var(--green-lime);
+}
+.products-full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.product-full-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(126,200,42,0.1);
+  border-radius: 6px; overflow: hidden; transition: all 0.4s;
+}
+.product-full-card:hover {
+  transform: translateY(-4px); border-color: rgba(126,200,42,0.35);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+.product-full-img {
+  height: 180px; background: linear-gradient(135deg, var(--green-dark), var(--gray-mid));
+  display: flex; align-items: center; justify-content: center; font-size: 60px;
+}
+.product-full-body { padding: 24px; }
+.product-full-tag { font-family: var(--font-ui); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--green-lime); margin-bottom: 8px; }
+.product-full-name { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+.product-full-desc { font-size: 13px; color: var(--steel); line-height: 1.6; margin-bottom: 16px; }
+.product-full-specs { margin-bottom: 16px; }
+.product-full-specs li { font-size: 12px; color: var(--silver); padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; }
+.product-full-specs li span { color: var(--green-lime); }
+.product-enquire {
+  width: 100%; padding: 10px; border: 1px solid var(--green-lime);
+  background: transparent; color: var(--green-lime); font-family: var(--font-ui);
+  font-weight: 600; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  border-radius: 4px; cursor: pointer; transition: all 0.3s;
+}
+.product-enquire:hover { background: var(--green-lime); color: var(--black); }
+
+/* ===== GALLERY PAGE ===== */
+.gallery-page { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 12px; }
+.gallery-item {
+  background: linear-gradient(135deg, var(--green-dark), var(--gray-mid));
+  border: 1px solid rgba(126,200,42,0.15); border-radius: 4px; overflow: hidden;
+  position: relative; cursor: pointer; transition: all 0.3s;
+  display: flex; align-items: center; justify-content: center;
+}
+.gallery-item:hover { border-color: var(--green-lime); transform: scale(1.02); z-index: 2; }
+.gallery-item.large { grid-column: span 2; grid-row: span 2; }
+.gallery-item.tall { grid-row: span 2; }
+.gallery-icon { font-size: 48px; opacity: 0.5; }
+.gallery-item:hover .gallery-icon { opacity: 0.8; }
+.gallery-overlay {
+  position: absolute; inset: 0; background: rgba(10,46,10,0.7);
+  display: flex; align-items: flex-end; padding: 16px;
+  opacity: 0; transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-caption { font-family: var(--font-ui); font-size: 13px; font-weight: 600; color: var(--green-lime); }
+
+/* ===== CONTACT PAGE ===== */
+.contact-page { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+.contact-info h3 { font-family: var(--font-display); font-size: 32px; font-weight: 800; margin-bottom: 16px; }
+.contact-info h3 .hl { color: var(--green-lime); }
+.contact-info p { color: var(--steel); line-height: 1.7; margin-bottom: 32px; }
+.contact-detail {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px; background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(126,200,42,0.1); border-radius: 6px; margin-bottom: 14px;
+  transition: border-color 0.3s;
+}
+.contact-detail:hover { border-color: rgba(126,200,42,0.3); }
+.contact-detail-icon {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(126,200,42,0.12);
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.contact-detail-label { font-family: var(--font-ui); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--green-lime); margin-bottom: 4px; }
+.contact-detail-value { font-size: 14px; color: var(--silver); line-height: 1.5; }
+.contact-form { background: rgba(255,255,255,0.02); border: 1px solid rgba(126,200,42,0.12); border-radius: 8px; padding: 40px; }
+.contact-form h3 { font-family: var(--font-display); font-size: 26px; font-weight: 800; margin-bottom: 24px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-family: var(--font-ui); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--steel); margin-bottom: 8px; }
+.form-group input, .form-group textarea, .form-group select {
+  width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(126,200,42,0.15); border-radius: 4px;
+  color: var(--white); font-family: var(--font-body); font-size: 14px;
+  transition: border-color 0.3s; outline: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--green-lime); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group select option { background: var(--gray-dark); }
+.form-submit {
+  width: 100%; padding: 14px; border: none; cursor: pointer; border-radius: 4px;
+  background: linear-gradient(135deg, var(--green-bright), var(--green-lime));
+  color: var(--black); font-family: var(--font-display); font-size: 18px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s;
+  box-shadow: 0 4px 24px rgba(126,200,42,0.3);
+}
+.form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(126,200,42,0.5); }
+
+/* ===== MAP AREA ===== */
+.map-section { padding: 0 60px 80px; max-width: 1200px; margin: 0 auto; }
+.map-box {
+  background: linear-gradient(135deg, var(--green-dark), var(--gray-mid));
+  border: 1px solid rgba(126,200,42,0.2); border-radius: 8px; height: 300px;
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px;
+}
+.map-box .map-icon { font-size: 48px; }
+.map-box p { color: var(--steel); font-size: 14px; }
+.map-box a { color: var(--green-lime); font-family: var(--font-ui); font-weight: 600; font-size: 14px; letter-spacing: 1px; }
+
+/* ===== WHY CHOOSE US ===== */
+.why-us {
+  padding: 100px 60px;
+  background: var(--black);
+  position: relative; overflow: hidden;
+}
+.why-us::before {
+  content: ''; position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(126,200,42,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+.why-card {
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(126,200,42,0.08);
+  border-radius: 6px; padding: 32px 24px; text-align: center; transition: all 0.4s;
+  position: relative; overflow: hidden;
+}
+.why-card::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--green-bright), var(--green-lime));
+  transform: scaleX(0); transition: transform 0.4s;
+}
+.why-card:hover { transform: translateY(-6px); border-color: rgba(126,200,42,0.25); }
+.why-card:hover::before { transform: scaleX(1); }
+.why-icon { font-size: 40px; margin-bottom: 16px; }
+.why-title { font-family: var(--font-ui); font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 10px; letter-spacing: 0.5px; }
+.why-desc { font-size: 13px; color: var(--steel); line-height: 1.6; }
+
+/* ===== CLIENTS BAND ===== */
+.clients-band {
+  padding: 50px 60px;
+  background: rgba(255,255,255,0.02);
+  border-top: 1px solid rgba(126,200,42,0.1);
+  border-bottom: 1px solid rgba(126,200,42,0.1);
+}
+.clients-band-label { text-align: center; font-family: var(--font-ui); font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--steel); margin-bottom: 32px; }
+.clients-list { display: flex; gap: 60px; justify-content: center; align-items: center; flex-wrap: wrap; }
+.client-name {
+  font-family: var(--font-display); font-size: 20px; font-weight: 700;
+  color: rgba(255,255,255,0.2); letter-spacing: 2px; text-transform: uppercase;
+  transition: color 0.3s;
+}
+.client-name:hover { color: rgba(126,200,42,0.6); }
+
+/* ===== SUCCESS MESSAGE ===== */
+.success-msg {
+  background: rgba(126,200,42,0.1); border: 1px solid var(--green-lime);
+  border-radius: 4px; padding: 14px; text-align: center; margin-top: 14px;
+  color: var(--green-lime); font-family: var(--font-ui); font-size: 14px;
+  display: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: fixed;
+    top: 70px; left: 0; right: 0; bottom: 0;
+    background: rgba(6,14,6,0.98); padding: 30px 20px;
+    z-index: 999;
+  }
+  .hamburger { display: flex; }
+  .hero-content { padding: 20px 20px; margin-left: 0; }
+  .hero-stats { display: none; }
+  .about-grid, .about-story, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .products-grid, .products-full-grid { grid-template-columns: 1fr 1fr; }
+  .testimonials-grid, .values-grid, .why-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+  .about-home, .products-home, .testimonials, .why-us, .about-page, .products-page, .gallery-page, .contact-page { padding-left: 20px; padding-right: 20px; }
+  .page-hero { padding: 120px 20px 60px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  footer { padding: 40px 20px; }
+}
+
+@media (max-width: 600px) {
+  .products-grid, .products-full-grid, .testimonials-grid, .values-grid, .why-grid, .team-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-item.large, .gallery-item.tall { grid-column: span 1; grid-row: span 1; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-icon">IS</div>
+    <div class="nav-logo-text">I.S. <span>ENGINEERING CO.</span></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a class="nav-link active" onclick="showPage('home')" id="nav-home">Home</a></li>
+    <li><a class="nav-link" onclick="showPage('about')" id="nav-about">About Us</a></li>
+    <li><a class="nav-link" onclick="showPage('products')" id="nav-products">Products</a></li>
+    <li><a class="nav-link" onclick="showPage('gallery')" id="nav-gallery">Gallery</a></li>
+    <li><a class="nav-link nav-cta" onclick="showPage('contact')" id="nav-contact">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- =================== HOME PAGE =================== -->
+<div class="page active" id="page-home">
+
+  <!-- HERO CAROUSEL -->
+  <section class="hero">
+    <div class="hero-slides">
+
+      <div class="hero-slide active slide-1">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <div class="hero-eyebrow">Premium Industrial Supply</div>
+          <h1 class="hero-title">
+            India's Trusted
+            <span class="accent">Flanges & Fittings</span>
+            Supplier
+          </h1>
+          <p class="hero-subtitle">Manufacturers & suppliers of M.S. Flanges, S.S. Flanges, Welding Neck & Fittings — precision engineered for demanding industries.</p>
+          <div class="hero-btns">
+            <button class="btn-primary" onclick="showPage('products')">Explore Products</button>
+            <button class="btn-secondary" onclick="showPage('contact')">Get a Quote</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-slide slide-2">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <div class="hero-eyebrow">Industrial Grade Pipes</div>
+          <h1 class="hero-title">
+            Built for the
+            <span class="accent">Harshest</span>
+            Conditions
+          </h1>
+          <p class="hero-subtitle">Supplying pipes for Oil & Gas, Petrochemical, Power, and Chemical plants. Every product is quality-checked and delivery-ready.</p>
+          <div class="hero-btns">
+            <button class="btn-primary" onclick="showPage('products')">View Pipes</button>
+            <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-slide slide-3">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <div class="hero-eyebrow">Mumbai Based · Pan India Delivery</div>
+          <h1 class="hero-title">
+            <span class="accent">20+ Years</span>
+            of Engineering
+            Excellence
+          </h1>
+          <p class="hero-subtitle">Serving top industrial clients with premium quality flanges, fittings, and pipes. On-time delivery guaranteed, customer satisfaction assured.</p>
+          <div class="hero-btns">
+            <button class="btn-primary" onclick="showPage('about')">Our Story</button>
+            <button class="btn-secondary" onclick="showPage('contact')">Reach Out</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="hero-indicators">
+      <div class="hero-dot active" onclick="goSlide(0)"></div>
+      <div class="hero-dot" onclick="goSlide(1)"></div>
+      <div class="hero-dot" onclick="goSlide(2)"></div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">20+</div><div class="hero-stat-label">Years</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">500+</div><div class="hero-stat-label">Clients</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">Products</div></div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why-us">
+    <div class="section-header">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">Built on <span class="hl">Trust & Quality</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <div class="why-title">Premium Quality</div>
+        <div class="why-desc">High-grade materials with precise manufacturing. Every product passes rigorous quality checks before dispatch.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📦</div>
+        <div class="why-title">Wide Range</div>
+        <div class="why-desc">Flanges, fittings & pipes for every requirement — MS, SS, welding neck, and more in multiple sizes.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">Reliable Service</div>
+        <div class="why-desc">On-time delivery with dedicated after-sales support. We stand behind every product we supply.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏭</div>
+        <div class="why-title">Industry Expertise</div>
+        <div class="why-desc">Serving Oil & Gas, Petrochemical, Power, Chemical, and more — with deep knowledge of industry standards.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SNIPPET -->
+  <section class="about-home">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-main-img">
+          <div style="text-align:center; padding:40px;">
+            <div style="font-size:100px;">⚙️</div>
+            <div style="font-family:var(--font-display); font-size:22px; color:var(--silver); margin-top:16px;">Engineering Excellence</div>
+            <div style="font-size:13px; color:var(--steel); margin-top:8px;">Mumbai, India</div>
+          </div>
+        </div>
+        <div class="about-badge">
+          <div class="about-badge-num">20+</div>
+          <div class="about-badge-text">YEARS<br>EXP.</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <h2>Who We <span class="hl">Are</span></h2>
+        <p>I.S. Engineering Co. is a Mumbai-based manufacturer and supplier of industrial flanges, fittings, and pipes. With over two decades of experience, we've become a trusted name for quality and reliability.</p>
+        <p>Located at Kolsa Bunder, Darukhana — the heart of Mumbai's industrial supply district — we serve clients across India's most demanding sectors.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature-icon">🔩</div>
+            <div>
+              <h4>M.S. & S.S. Flanges</h4>
+              <p>Mild steel and stainless steel flanges in all standards and pressure ratings.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">🔧</div>
+            <div>
+              <h4>Welding Neck & Fittings</h4>
+              <p>Precision welding neck flanges and pipe fittings for high-pressure applications.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">🪈</div>
+            <div>
+              <h4>Pipes Supply</h4>
+              <p>Full range of industrial pipes sourced from leading mills, delivered on time.</p>
+            </div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="showPage('about')" style="margin-top:8px;">Learn More About Us</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SNIPPET -->
+  <section class="products-home">
+    <div class="section-header">
+      <div class="section-label">Our Products</div>
+      <h2 class="section-title">Premium <span class="hl">Product Range</span></h2>
+      <p class="section-desc">Explore our comprehensive range of flanges, fittings, and pipes manufactured to international standards.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img"><div class="product-img-icon">🔩</div></div>
+        <div class="product-info">
+          <div class="product-tag">Flanges</div>
+          <div class="product-name">M.S. Flanges</div>
+          <div class="product-desc">Mild steel flanges manufactured to ANSI, BS, DIN standards. Available in slip-on, blind, weld neck types.</div>
+          <div class="product-specs">
+            <span class="spec-chip">ANSI B16.5</span>
+            <span class="spec-chip">150# – 2500#</span>
+            <span class="spec-chip">½" – 36"</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><div class="product-img-icon">⭕</div></div>
+        <div class="product-info">
+          <div class="product-tag">Flanges</div>
+          <div class="product-name">S.S. Flanges</div>
+          <div class="product-desc">Stainless steel flanges in SS 304, SS 316, and duplex grades for corrosive and high-temperature environments.</div>
+          <div class="product-specs">
+            <span class="spec-chip">SS 304/316</span>
+            <span class="spec-chip">All Sizes</span>
+            <span class="spec-chip">High Temp</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img"><div class="product-img-icon">🔧</div></div>
+        <div class="product-info">
+          <div class="product-tag">Fittings</div>
+          <div class="product-name">Pipe Fittings</div>
+          <div class="product-desc">Complete range of buttweld fittings — elbows, tees, reducers, caps, and stub ends in MS and SS.</div>
+          <div class="product-specs">
+            <span class="spec-chip">Buttweld</span>
+            <span class="spec-chip">Elbows</span>
+            <span class="spec-chip">Tees</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <button class="btn-primary" onclick="showPage('products')">View All Products</button>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-header">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-title">What Our <span class="hl">Clients Say</span></h2>
+      <p class="section-desc">Trusted by hundreds of businesses across India's industrial sector.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"I.S. Engineering Co. has been our go-to supplier for flanges for over 5 years. The quality is consistently excellent and delivery is always on time. Highly recommend!"</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RK</div>
+          <div>
+            <div class="testimonial-name">Rajesh Kumar</div>
+            <div class="testimonial-company">Procurement Manager, Bharat Petroleum</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Exceptional service and product quality. Their stainless steel flanges meet all our stringent specifications. We've saved significantly on procurement costs."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SP</div>
+          <div>
+            <div class="testimonial-name">Suresh Patil</div>
+            <div class="testimonial-company">Project Head, Reliance Industries</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-text">"Fast response, competitive pricing, and the pipe fittings quality is top notch. I.S. Engineering is a reliable partner for our oil & gas projects."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AM</div>
+          <div>
+            <div class="testimonial-name">Anil Mehta</div>
+            <div class="testimonial-company">Director, Pune Engineering Works</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <div class="clients-band">
+    <div class="clients-band-label">Industries & Clients We Serve</div>
+    <div class="clients-list">
+      <div class="client-name">Oil & Gas</div>
+      <div class="client-name">Petrochemical</div>
+      <div class="client-name">Power Plants</div>
+      <div class="client-name">Chemical</div>
+      <div class="client-name">EPC Companies</div>
+      <div class="client-name">Refineries</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">I.S. <span>ENGINEERING CO.</span></div>
+        <div class="footer-tagline">Flanges · Fittings · Pipes</div>
+        <p class="footer-brand-desc">Manufacturers & suppliers of premium industrial flanges, fittings, and pipes. Serving India's most demanding industries from Mumbai since 2000+.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('products')">Products</a></li>
+          <li><a onclick="showPage('gallery')">Gallery</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Products</div>
+        <ul class="footer-links">
+          <li><a>M.S. Flanges</a></li>
+          <li><a>S.S. Flanges</a></li>
+          <li><a>Welding Neck</a></li>
+          <li><a>Pipe Fittings</a></li>
+          <li><a>Industrial Pipes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">📍</div>
+          <div class="footer-contact-text">Gala 10, Plot No. 255, Mehta Lane, Kolsa Bunder, Darukhana, Rey Road, Mumbai – 400 010</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">📞</div>
+          <div class="footer-contact-text">9137332945 / 8355815350</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">✉️</div>
+          <div class="footer-contact-text">info.isengineeringco@gmail.com</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">🌐</div>
+          <div class="footer-contact-text">www.isengineeringco.in</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 I.S. Engineering Co. All rights reserved. | Mumbai, India</div>
+      <div class="footer-socials">
+        <div class="social-btn">📘</div>
+        <div class="social-btn">💼</div>
+        <div class="social-btn">📸</div>
+        <div class="social-btn">🐦</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================== ABOUT PAGE =================== -->
+<div class="page" id="page-about">
+  <div class="page-hero">
+    <div class="page-hero-label">Who We Are</div>
+    <h1 class="page-hero-title">About <span class="hl">I.S. Engineering Co.</span></h1>
+    <div class="breadcrumb">Home <span>›</span> About Us</div>
+  </div>
+
+  <div class="about-page">
+    <div class="about-story">
+      <div class="about-story-text">
+        <h3>Our <span class="hl">Story</span></h3>
+        <p>I.S. Engineering Co. was founded with a simple vision: to provide India's industrial sector with the highest quality flanges, fittings, and pipes at competitive prices, backed by unmatched service.</p>
+        <p>Based in the heart of Mumbai's industrial zone at Kolsa Bunder, Darukhana — we have grown from a small trading firm to a respected manufacturer and supplier serving clients across India.</p>
+        <p>Our team of experienced engineers and procurement specialists ensures that every product we supply meets international standards and your exact specifications. Whether you need a single flange or bulk pipe supply for a large project, we deliver with the same commitment to quality.</p>
+        <p>Today, I.S. Engineering Co. is proud to serve clients in Oil & Gas, Petrochemical, Power Generation, Chemical processing, and EPC sectors with an ever-expanding product portfolio.</p>
+      </div>
+      <div class="about-visual-box">
+        <div class="big-icon">🏭</div>
+        <div class="big-text">Mumbai's Trusted<br>Industrial Supplier</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; width:100%; margin-top:12px;">
+          <div style="text-align:center; background:rgba(126,200,42,0.08); border:1px solid rgba(126,200,42,0.2); border-radius:6px; padding:16px;">
+            <div style="font-family:var(--font-display); font-size:32px; font-weight:800; color:var(--green-lime);">20+</div>
+            <div style="font-size:11px; color:var(--steel); letter-spacing:2px;">YEARS EXP.</div>
+          </div>
+          <div style="text-align:center; background:rgba(126,200,42,0.08); border:1px solid rgba(126,200,42,0.2); border-radius:6px; padding:16px;">
+            <div style="font-family:var(--font-display); font-size:32px; font-weight:800; color:var(--green-lime);">500+</div>
+            <div style="font-size:11px; color:var(--steel); letter-spacing:2px;">CLIENTS</div>
+          </div>
+          <div style="text-align:center; background:rgba(126,200,42,0.08); border:1px solid rgba(126,200,42,0.2); border-radius:6px; padding:16px;">
+            <div style="font-family:var(--font-display); font-size:32px; font-weight:800; color:var(--green-lime);">50+</div>
+            <div style="font-size:11px; color:var(--steel); letter-spacing:2px;">PRODUCTS</div>
+          </div>
+          <div style="text-align:center; background:rgba(126,200,42,0.08); border:1px solid rgba(126,200,42,0.2); border-radius:6px; padding:16px;">
+            <div style="font-family:var(--font-display); font-size:32px; font-weight:800; color:var(--green-lime);">6</div>
+            <div style="font-size:11px; color:var(--steel); letter-spacing:2px;">INDUSTRIES</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <div class="section-label">Our Values</div>
+      <h2 class="section-title">What <span class="hl">Drives Us</span></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <div class="value-title">Quality First</div>
+        <div class="value-desc">We never compromise on material grade or manufacturing precision. Every product is tested before it leaves our warehouse.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <div class="value-title">Speed & Reliability</div>
+        <div class="value-desc">Deadlines matter in industrial projects. We pride ourselves on on-time delivery, every time, without exception.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-title">Partnership</div>
+        <div class="value-desc">We see our clients as long-term partners, not one-time transactions. Your success is our success.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <div class="value-title">Integrity</div>
+        <div class="value-desc">Transparent pricing, honest communication, and ethical business practices are the foundation of everything we do.</div>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <h3>Meet Our <span class="hl">Team</span></h3>
+      <p>Our experienced team of engineers and supply specialists is dedicated to fulfilling your industrial requirements with professionalism and precision.</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">IS</div>
+          <div class="team-name">Founder & Director</div>
+          <div class="team-role">I.S. Engineering Co.</div>
+          <div class="team-bio">20+ years in industrial supply. Expert in flanges, fittings, and pipe standards across all major industries.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">TM</div>
+          <div class="team-name">Technical Manager</div>
+          <div class="team-role">Quality & Standards</div>
+          <div class="team-bio">Ensures every product meets ANSI, BS, DIN, and IS standards. Your assurance of quality from order to delivery.</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">SM</div>
+          <div class="team-name">Sales Manager</div>
+          <div class="team-role">Client Relations</div>
+          <div class="team-bio">Your first point of contact for quotes, inquiries, and project requirements. Fast responses guaranteed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">I.S. <span>ENGINEERING CO.</span></div>
+        <div class="footer-tagline">Flanges · Fittings · Pipes</div>
+        <p class="footer-brand-desc">Manufacturers & suppliers of premium industrial flanges, fittings, and pipes from Mumbai, India.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('products')">Products</a></li>
+          <li><a onclick="showPage('gallery')">Gallery</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Products</div>
+        <ul class="footer-links">
+          <li><a>M.S. Flanges</a></li>
+          <li><a>S.S. Flanges</a></li>
+          <li><a>Welding Neck</a></li>
+          <li><a>Pipe Fittings</a></li>
+          <li><a>Industrial Pipes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">📍</div>
+          <div class="footer-contact-text">Gala 10, Plot No. 255, Mehta Lane, Kolsa Bunder, Darukhana, Mumbai – 400 010</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">📞</div>
+          <div class="footer-contact-text">9137332945 / 8355815350</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">✉️</div>
+          <div class="footer-contact-text">info.isengineeringco@gmail.com</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 I.S. Engineering Co. All rights reserved.</div>
+      <div class="footer-socials">
+        <div class="social-btn">📘</div>
+        <div class="social-btn">💼</div>
+        <div class="social-btn">📸</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================== PRODUCTS PAGE =================== -->
+<div class="page" id="page-products">
+  <div class="page-hero">
+    <div class="page-hero-label">Our Range</div>
+    <h1 class="page-hero-title">Our <span class="hl">Products</span></h1>
+    <div class="breadcrumb">Home <span>›</span> Products</div>
+  </div>
+
+  <div class="products-page">
+    <div class="section-header">
+      <div class="section-label">Product Catalogue</div>
+      <h2 class="section-title">Precision <span class="hl">Engineered</span> Products</h2>
+      <p class="section-desc">All products are manufactured to international standards including ANSI, BS, DIN, IS. Available in multiple grades, sizes, and pressure ratings.</p>
+    </div>
+
+    <div class="products-filter">
+      <button class="filter-btn active">All Products</button>
+      <button class="filter-btn">Flanges</button>
+      <button class="filter-btn">Fittings</button>
+      <button class="filter-btn">Pipes</button>
+    </div>
+
+    <div class="products-full-grid">
+      <!-- Flanges -->
+      <div class="product-full-card">
+        <div class="product-full-img">🔩</div>
+        <div class="product-full-body">
+          <div class="product-full-tag">Flanges</div>
+          <div class="product-full-name">M.S. Slip-On Flanges</div>
+          <div class="product-full-desc">Mild steel slip-on flanges for general piping applications. Easy to install and weld.</div>
+          <ul class="product-full-specs">
+            <li>Standard <span>ANSI B16.5 / IS 6392</span></li>
+            <li>Size Range <span>½" – 36"</span></li>
+            <li>Pressure Rating <span>150# – 2500#</span></li>
+            <li>Material <span>A105 / IS 2062</span></li>
+          </ul>
+          <button class="product-enquire" onclick="showPage('contact')">Enquire Now</button>
+        </div>
+      </div>
+
+      <div class="product-full-card">
+        <div class="product-full-img">⭕</div>
+        <div class="product-full-body">
+          <div class="product-full-tag">Flanges</div>
+          <div class="product-full-name">M.S. Weld Neck Flanges</div>
+          <div class="product-full-desc">High-pressure welding neck flanges for critical piping systems with superior integrity.</div>
+          <ul class="product-full-specs">
+            <li>Standard <span>ANSI B16.5</span></li>
+            <li>Size Range <span>½" – 24"</span></li>
+            <li>Pressure Rating <span>150# – 2500#</span></li>
+            <li>Material <span>A105 / Carbon Steel</span></li>
+          </ul>
+          <button class="product-enquire" onclick="showPage('contact')">Enquire Now</button>
+        </div>
+      </div>
+
+      <div class="product-full-card">
+        <div class="product-full-img">🔵</div>
+        <div class="product-full-body">
+          <div class="product-full-tag">Flanges</div>
+          <div class="product-full-name">M.S. Blind Flanges</div>
+          <div class="product-full-desc">Blind flanges for closing pipe ends and pressure vessel openings. Stock in all sizes.</div>
+          <ul class="product-full-specs">
+            <li>Standard <span>ANSI B16.5 / BS 4504</span></li>
+            <li>Size Range <span>½" – 48"</span></li>
+            <li>Pressure Rating <span>150# – 1500#</span></li>
+            <li>Material <span>Carbon Steel</span></li>
+          </ul>
+          <button class="product-enquire" onclick="showPage('contact')">Enquire Now</button>
+        </div>
+      </div>
+
+      <div class="product-full-card">
+        <div class="product-full-img">✨</div>
+        <div class="product-full-body">
+          <div class="product-full-tag">Flanges</div>
+          <div class="product-full-name">S.S. Flanges</div>
+          <div class="product-full-desc">Stainless steel flanges in SS 304, SS 316 & Duplex grades for corrosive environments.</div>
+          <ul class="product-full-specs">
+            <li>Grade <span>SS 304 / SS 316 / Duplex</span></li>
+            <li>Type <span>Slip-On, WN, Blind, SO</span></li>
+            <li>Standard <span>ANSI / DIN / BS</span></li>
+            <li>Finish <span>Natural / Pickled</span></li>
+          </ul>
+          <button class="product-enquire" onclick="showPage('contact')">Enquire Now</button>
+        </div>
+      </div>
+
+      <!-- Fittings -->
+      <div class="product-full-card">
+        <div class="product-full-img">🔧</div>
+        <div class="product-full-body">
+          <div class="product-full-tag">Fittings</div>
+          <div class="product-full-name">Buttweld Elbows</div>
+          <div class="product-full-desc">90° and 45° elbows in short and long radius. MS and SS grades available in all schedules.</div>
+          <ul class="product-full-specs">
+            <li>Angle <span>45° / 90° / 180°</span></li>
+            <li>Type <span>LR / SR</span></li>
+            <li>Standard <span>ASME B16.9</span></li>
+            <li>Size Range <span>½" – 24"</span></li>
+          </ul>
+          <button class="product-enquire" onclick="showPage('contact')">Enquire Now</button>
+        </div>
+      </div>
+
+      <div class="product-full-card">
+        <div class="product-full-img">🔱</div>
+        <div class="product-full-body">
+          <div class="product-full-tag">Fittings</div>
+          <div class="product-full-name">Equal & Reducing Tees</div>
+          <div class="product-full-desc">Equal and reducing tees for branching pipe runs in process and utility piping.</div>
+          <ul class="product-full-specs">
+            <li>Type <span>Equal / Reducing</span></li>
+            <li>Standard <span>ASME B16.9</span></li>
+            <li>Material <span>MS / SS / Alloy</span></li>
+            <li>Size Range <span>½" – 24"</span></li>
+          </ul>
+          <button class="product-enquire" onclick="showPage('contact')">Enquire Now</button>
+        </div>
+      </div>
+
+      <div class="product-full-card">
+        <div class="product-full-img">🔺</div>
+        <div class="product-full-body">
+          <div class="product-full-tag">Fittings</div>
+          <div class="product-full-name">Concentric & Eccentric Reducers</div>
+          <div class="product-full-desc">Pipe reducers for connecting pipes of different diameters while maintaining flow direction.</div>
+          <ul class="product-full-specs">
+            <li>Type <span>Concentric / Eccentric</span></li>
+            <li>Standard <span>ASME B16.9</span></li>
+            <li>Material <span>Carbon / SS</span></li>
+            <li>Size Range <span>¾" – 24"</span></li>
+          </ul>
+          <button class="product-enquire" onclick="showPage('contact')">Enquire Now</button>
+        </div>
+      </div>
+
+      <!-- Pipes -->
+      <div class="product-full-card">
+        <div class="product-full-img">🪈</div>
+        <div class="product-full-body">
+          <div class="product-full-tag">Pipes</div>
+          <div class="product-full-name">ERW / Seamless Pipes</div>
+          <div class="product-full-desc">Electric resistance welded and seamless pipes for structural, mechanical, and process applications.</div>
+          <ul class="product-full-specs">
+            <li>Type <span>ERW / Seamless</span></li>
+            <li>Standard <span>ASTM A53 / A106 / IS 1239</span></li>
+            <li>Size <span>½" – 12" NB</span></li>
+            <li>Schedule <span>Sch 40 / 80 / 160</span></li>
+          </ul>
+          <button class="product-enquire" onclick="showPage('contact')">Enquire Now</button>
+        </div>
+      </div>
+
+      <div class="product-full-card">
+        <div class="product-full-img">⚪</div>
+        <div class="product-full-body">
+          <div class="product-full-tag">Pipes</div>
+          <div class="product-full-name">S.S. Pipes</div>
+          <div class="product-full-desc">Stainless steel pipes for high-purity, corrosion-resistant applications in food, pharma, and chemical industries.</div>
+          <ul class="product-full-specs">
+            <li>Grade <span>SS 304 / 316 / 316L</span></li>
+            <li>Type <span>Welded / Seamless</span></li>
+            <li>Standard <span>ASTM A312</span></li>
+            <li>Finish <span>2B / No.4 / Mirror</span></li>
+          </ul>
+          <button class="product-enquire" onclick="showPage('contact')">Enquire Now</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:60px; text-align:center; background:rgba(126,200,42,0.06); border:1px solid rgba(126,200,42,0.15); border-radius:8px; padding:40px;">
+      <div style="font-family:var(--font-display); font-size:28px; font-weight:800; margin-bottom:12px;">Need a Custom Size or Grade?</div>
+      <p style="color:var(--steel); margin-bottom:24px; max-width:500px; margin-left:auto; margin-right:auto;">We can source and supply any flange, fitting, or pipe to your exact specifications. Send us your requirement and we'll get back with a quote within 24 hours.</p>
+      <button class="btn-primary" onclick="showPage('contact')">Send Enquiry</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">I.S. <span>ENGINEERING CO.</span></div>
+        <div class="footer-tagline">Flanges · Fittings · Pipes</div>
+        <p class="footer-brand-desc">Mumbai-based manufacturers & suppliers of premium industrial flanges, fittings, and pipes.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('products')">Products</a></li>
+          <li><a onclick="showPage('gallery')">Gallery</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Products</div>
+        <ul class="footer-links">
+          <li><a>M.S. Flanges</a></li>
+          <li><a>S.S. Flanges</a></li>
+          <li><a>Buttweld Fittings</a></li>
+          <li><a>ERW Pipes</a></li>
+          <li><a>S.S. Pipes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">📞</div>
+          <div class="footer-contact-text">9137332945 / 8355815350</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">✉️</div>
+          <div class="footer-contact-text">info.isengineeringco@gmail.com</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 I.S. Engineering Co. All rights reserved.</div>
+      <div class="footer-socials">
+        <div class="social-btn">📘</div>
+        <div class="social-btn">💼</div>
+        <div class="social-btn">📸</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================== GALLERY PAGE =================== -->
+<div class="page" id="page-gallery">
+  <div class="page-hero">
+    <div class="page-hero-label">Visual Showcase</div>
+    <h1 class="page-hero-title">Our <span class="hl">Gallery</span></h1>
+    <div class="breadcrumb">Home <span>›</span> Gallery</div>
+  </div>
+
+  <div class="gallery-page">
+    <div class="section-header">
+      <div class="section-label">Product Gallery</div>
+      <h2 class="section-title">See Our <span class="hl">Work</span></h2>
+      <p class="section-desc">A visual look at our product range, warehouse operations, and industrial project work.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item large">
+        <div class="gallery-icon">🔩</div>
+        <div class="gallery-overlay"><div class="gallery-caption">M.S. Flanges Collection</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">⭕</div>
+        <div class="gallery-overlay"><div class="gallery-caption">Blind Flanges</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">🔧</div>
+        <div class="gallery-overlay"><div class="gallery-caption">Pipe Fittings</div></div>
+      </div>
+      <div class="gallery-item tall">
+        <div class="gallery-icon">🪈</div>
+        <div class="gallery-overlay"><div class="gallery-caption">Industrial Pipes</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">⚙️</div>
+        <div class="gallery-overlay"><div class="gallery-caption">Gear & Tools</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">✨</div>
+        <div class="gallery-overlay"><div class="gallery-caption">S.S. Flanges</div></div>
+      </div>
+      <div class="gallery-item large">
+        <div class="gallery-icon">🏭</div>
+        <div class="gallery-overlay"><div class="gallery-caption">Our Warehouse, Mumbai</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">🔱</div>
+        <div class="gallery-overlay"><div class="gallery-caption">Equal Tees</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">🔺</div>
+        <div class="gallery-overlay"><div class="gallery-caption">Reducers</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">🔵</div>
+        <div class="gallery-overlay"><div class="gallery-caption">Weld Neck Flanges</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">⚪</div>
+        <div class="gallery-overlay"><div class="gallery-caption">S.S. Pipes</div></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-icon">🏗️</div>
+        <div class="gallery-overlay"><div class="gallery-caption">Project Delivery</div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:50px; text-align:center; background:rgba(126,200,42,0.05); border:1px solid rgba(126,200,42,0.12); border-radius:8px; padding:36px;">
+      <div style="font-size:40px; margin-bottom:12px;">📷</div>
+      <div style="font-family:var(--font-display); font-size:24px; font-weight:800; margin-bottom:10px;">More Photos Coming Soon</div>
+      <p style="color:var(--steel); margin-bottom:22px;">We're continuously updating our gallery with project photos, product images, and warehouse shots. Follow us on social media for the latest updates.</p>
+      <button class="btn-secondary" onclick="showPage('contact')">Get in Touch</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">I.S. <span>ENGINEERING CO.</span></div>
+        <div class="footer-tagline">Flanges · Fittings · Pipes</div>
+        <p class="footer-brand-desc">Manufacturers & suppliers of premium industrial flanges, fittings, and pipes from Mumbai, India.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('products')">Products</a></li>
+          <li><a onclick="showPage('gallery')">Gallery</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Products</div>
+        <ul class="footer-links">
+          <li><a>M.S. Flanges</a></li>
+          <li><a>S.S. Flanges</a></li>
+          <li><a>Pipe Fittings</a></li>
+          <li><a>Industrial Pipes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">📞</div>
+          <div class="footer-contact-text">9137332945 / 8355815350</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">✉️</div>
+          <div class="footer-contact-text">info.isengineeringco@gmail.com</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 I.S. Engineering Co. All rights reserved.</div>
+      <div class="footer-socials">
+        <div class="social-btn">📘</div>
+        <div class="social-btn">💼</div>
+        <div class="social-btn">📸</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- =================== CONTACT PAGE =================== -->
+<div class="page" id="page-contact">
+  <div class="page-hero">
+    <div class="page-hero-label">Get In Touch</div>
+    <h1 class="page-hero-title">Contact <span class="hl">Us</span></h1>
+    <div class="breadcrumb">Home <span>›</span> Contact Us</div>
+  </div>
+
+  <div class="contact-page">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Let's <span class="hl">Talk Business</span></h3>
+        <p>Whether you need a quote, have a technical question, or want to discuss your project requirements — our team is ready to help. Reach out via any channel below.</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div>
+            <div class="contact-detail-label">Work Address</div>
+            <div class="contact-detail-value">Gala 10, Plot No. 255, Mehta Lane,<br>Kolsa Bunder, Darukhana, Rey Road,<br>Mumbai – 400 010</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div>
+            <div class="contact-detail-label">Phone / WhatsApp</div>
+            <div class="contact-detail-value">9137332945 / 8355815350</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div>
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-value">info.isengineeringco@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🌐</div>
+          <div>
+            <div class="contact-detail-label">Website</div>
+            <div class="contact-detail-value">www.isengineeringco.in</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🕐</div>
+          <div>
+            <div class="contact-detail-label">Business Hours</div>
+            <div class="contact-detail-value">Monday – Saturday: 9:00 AM – 7:00 PM<br>Sunday: Closed</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send an <span style="color:var(--green-lime)">Enquiry</span></h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Company</label>
+            <input type="text" placeholder="Your company">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="+91 XXXXX XXXXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Product Interest</label>
+          <select>
+            <option>Select product type</option>
+            <option>M.S. Flanges</option>
+            <option>S.S. Flanges</option>
+            <option>Welding Neck Flanges</option>
+            <option>Pipe Fittings</option>
+            <option>Industrial Pipes</option>
+            <option>Multiple Products</option>
+            <option>Other / Custom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Your Requirement</label>
+          <textarea placeholder="Describe your requirement — size, grade, quantity, delivery timeline..."></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
+        <div class="success-msg" id="successMsg">✅ Thank you! We'll get back to you within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-section">
+    <div class="map-box">
+      <div class="map-icon">🗺️</div>
+      <p>Gala 10, Plot No. 255, Mehta Lane, Kolsa Bunder, Darukhana, Mumbai – 400 010</p>
+      <a href="https://maps.google.com/?q=Darukhana+Mumbai+400010" target="_blank">Open in Google Maps →</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">I.S. <span>ENGINEERING CO.</span></div>
+        <div class="footer-tagline">Flanges · Fittings · Pipes</div>
+        <p class="footer-brand-desc">Manufacturers & suppliers of premium industrial flanges, fittings, and pipes from Mumbai, India.</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a onclick="showPage('home')">Home</a></li>
+          <li><a onclick="showPage('about')">About Us</a></li>
+          <li><a onclick="showPage('products')">Products</a></li>
+          <li><a onclick="showPage('gallery')">Gallery</a></li>
+          <li><a onclick="showPage('contact')">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Products</div>
+        <ul class="footer-links">
+          <li><a>M.S. Flanges</a></li>
+          <li><a>S.S. Flanges</a></li>
+          <li><a>Pipe Fittings</a></li>
+          <li><a>Industrial Pipes</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">📞</div>
+          <div class="footer-contact-text">9137332945 / 8355815350</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">✉️</div>
+          <div class="footer-contact-text">info.isengineeringco@gmail.com</div>
+        </div>
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">🌐</div>
+          <div class="footer-contact-text">www.isengineeringco.in</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 I.S. Engineering Co. All rights reserved. Mumbai, India.</div>
+      <div class="footer-socials">
+        <div class="social-btn">📘</div>
+        <div class="social-btn">💼</div>
+        <div class="social-btn">📸</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+// ===== PAGE NAVIGATION =====
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + page);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+  // Close mobile nav
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+// ===== MOBILE NAV =====
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// ===== HERO CAROUSEL =====
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+
+function goSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+setInterval(() => {
+  goSlide((currentSlide + 1) % slides.length);
+}, 5000);
+
+// ===== PRODUCT FILTER =====
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// ===== CONTACT FORM =====
+function submitForm() {
+  document.getElementById('successMsg').style.display = 'block';
+  setTimeout(() => { document.getElementById('successMsg').style.display = 'none'; }, 5000);
+}
+
+// ===== SCROLL REVEAL =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.product-card, .testimonial-card, .why-card, .value-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
