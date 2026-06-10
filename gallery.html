@@ -1,34 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery | I.S. Engineering Co. – M.S. Flanges &amp; Pipe Fittings Mumbai</title>
-  <meta name="description"
-    content="View our gallery of M.S. Flanges, E Table Flanges, M.S. Pipes, Industrial Pipe Fittings and our Mumbai manufacturing facility. I.S. Engineering Co. since 1999.">
+  <title>Gallery | I.S. Engineering Co. – M.S. Flanges & Pipe Fittings Mumbai</title>
+  <meta name="description" content="View our gallery of M.S. Flanges, E Table Flanges, M.S. Pipes, Industrial Pipe Fittings and our Mumbai manufacturing facility. I.S. Engineering Co. since 1999.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://isengineeringco.in/gallery.html">
   <link rel="stylesheet" href="css/style.css">
-</head>
+  <style>
+    html, body { max-width: 100%; overflow-x: hidden; }
 
+    /* ── TABS ── */
+    .gallery-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .gallery-tab {
+      font-family: var(--font-head, 'Barlow Condensed', Arial, sans-serif);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border: 2px solid #dde5cc;
+      border-radius: 30px;
+      background: white;
+      color: #666;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+    .gallery-tab.active,
+    .gallery-tab:hover {
+      background: #5B8E1D;
+      border-color: #5B8E1D;
+      color: white;
+    }
+
+    /* ── GALLERY GRID — all equal size, no span ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .gallery-item {
+      position: relative;
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .product-badge-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #5B8E1D;
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      z-index: 2;
+    }
+    .gallery-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      padding: 7px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transform: translateY(100%);
+      transition: transform 0.25s ease;
+      line-height: 1.3;
+    }
+    .gallery-item:hover .gallery-label {
+      transform: translateY(0);
+    }
+
+    /* Section group label */
+    .gallery-section-label {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 36px 0 18px;
+    }
+    .gallery-section-label span {
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: #5B8E1D;
+      white-space: nowrap;
+    }
+    .gallery-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #dde5cc;
+    }
+
+    /* ── VIDEO SECTION ── */
+    .video-section {
+      padding: 72px 0;
+      background: #2a2a2a;
+    }
+    .video-section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .video-section-title h2 {
+      font-family: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .video-section-title h2 span { color: #5B8E1D; }
+    .video-title-bar {
+      width: 52px;
+      height: 4px;
+      background: #5B8E1D;
+      margin: 0 auto 12px;
+      border-radius: 2px;
+    }
+    .video-section-title p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.97rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+    .video-card {
+      background: #1a1a1a;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: #5B8E1D;
+      box-shadow: 0 8px 28px rgba(91,142,29,0.25);
+    }
+    .video-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #111;
+      overflow: hidden;
+    }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.3);
+      transition: background 0.2s ease;
+    }
+    .video-card:hover .video-play-overlay { background: rgba(0,0,0,0.15); }
+    .play-btn {
+      width: 44px;
+      height: 44px;
+      background: #5B8E1D;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, background 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+    }
+    .video-card:hover .play-btn { transform: scale(1.12); background: #4a7318; }
+    .play-btn svg { width: 18px; height: 18px; fill: white; margin-left: 3px; }
+    .video-duration {
+      position: absolute;
+      bottom: 7px;
+      right: 8px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+    .video-info { padding: 11px 12px 13px; }
+    .video-tag {
+      display: inline-block;
+      background: rgba(91,142,29,0.18);
+      color: #72b022;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+      margin-bottom: 6px;
+    }
+    .video-title {
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.35;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Video Modal */
+    .video-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .video-modal.active { display: flex; }
+    .video-modal-inner {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      background: #111;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    }
+    .video-modal-frame { position: relative; aspect-ratio: 16/9; }
+    .video-modal-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+    .vm-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      width: 36px;
+      height: 36px;
+      background: #5B8E1D;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .vm-close:hover { background: #4a7318; }
+    .video-modal-title { padding: 14px 18px; background: #1a1a1a; }
+    .video-modal-title p {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 0;
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .video-grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .video-section { padding: 52px 0; }
+    }
+    @media (max-width: 540px) {
+      .gallery-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+      .gallery-tab { flex-shrink: 0; }
+    }
+    @media (max-width: 380px) {
+      .video-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    }
+  </style>
+</head>
 <body>
 
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="container">
       <div class="topbar-left">
-        <div class="topbar-item"><svg viewBox="0 0 24 24" fill="#5B8E1D" width="12" height="12">
-            <path
-              d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
-          </svg><a href="tel:+918355815350">+91 83558 15350</a></div>
-        <div class="topbar-item"><svg viewBox="0 0 24 24" fill="#5B8E1D" width="12" height="12">
-            <path
-              d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
-          </svg><a href="mailto:info.isengineering.co@gmail.com">info.isengineering.co@gmail.com</a></div>
+        <div class="topbar-item">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          <a href="tel:+918355815350">+91 83558 15350</a>
+        </div>
+        <div class="topbar-item">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <a href="mailto:info.isengineering.co@gmail.com">info.isengineering.co@gmail.com</a>
+        </div>
       </div>
       <div class="topbar-right">
-        <div class="topbar-item">Mumbai, Maharashtra</div>
+        <div class="topbar-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+          Mumbai, Maharashtra
+        </div>
         <div class="topbar-item">GSTN: 27AMZPK5174G1ZE</div>
       </div>
     </div>
@@ -37,320 +339,389 @@
   <!-- HEADER -->
   <header id="main-header">
     <div class="header-inner">
-      <a href="index.html" class="site-logo">
+      <a href="index.html" class="site-logo" aria-label="I.S. Engineering Co. Home">
         <div class="logo-svg-wrap">
-          <img src="assets/images/logo.png" alt="I.S. Engineering Co. Logo" width="50" height="50"
-            style="margin-top: 15px;">
+          <img src="assets/images/logo.png" alt="I.S. Engineering Co. Logo" width="50" height="50" style="margin-top:15px;">
         </div>
-        <div class="logo-text-wrap"><span class="logo-name">I.S. Engineering Co.</span><span class="logo-tagline">M.S.
-            Flanges · Pipes · Fittings</span></div>
+        <div class="logo-text-wrap">
+          <span class="logo-name">I.S. Engineering Co.</span>
+          <span class="logo-tagline">M.S. Flanges · Pipes · Fittings</span>
+        </div>
       </a>
-      <nav class="main-nav">
-        <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a><a
-          href="products.html" class="nav-link">Products</a><a href="gallery.html" class="nav-link active">Gallery</a><a
-          href="contact.html" class="nav-link">Contact</a>
-        <a href="contact.html" class="btn btn-primary nav-cta"
-          style="margin-left:12px;padding:9px 20px;font-size:0.85rem;">Get Quote</a>
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="gallery.html" class="nav-link active">Gallery</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="contact.html" class="btn btn-primary nav-cta" style="margin-left:12px;padding:9px 20px;font-size:0.85rem;">Get Quote</a>
       </nav>
-      <button class="hamburger"><span></span><span></span><span></span></button>
+      <button class="hamburger" aria-label="Toggle Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <nav class="mobile-nav"><a href="index.html">Home</a><a href="about.html">About</a><a
-        href="products.html">Products</a><a href="gallery.html" class="active">Gallery</a><a
-        href="contact.html">Contact</a><a href="contact.html" class="mob-cta">Get a Quote</a></nav>
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Products</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="mob-cta">Get a Quote</a>
+    </nav>
   </header>
 
   <main>
+
+    <!-- BREADCRUMB -->
     <div class="breadcrumb-bar">
       <div class="container">
-        <nav class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span>Gallery</span>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>Gallery</span>
         </nav>
       </div>
     </div>
 
+    <!-- PAGE HERO -->
     <section class="page-hero">
       <div class="container">
-        <h1>Product Gallery</h1>
-        <p>View our manufacturing facility, M.S. Flanges, E Table Flanges, Pipes and Pipe Fittings produced at our
-          Mumbai plant.</p>
-        <div class="pg-badges"><span class="pg-badge">M.S. Flanges</span><span class="pg-badge">E Table
-            Flanges</span><span class="pg-badge">Factory Images</span><span class="pg-badge">Pipe Fittings</span></div>
+        <h1>Product Gallery &amp; Videos</h1>
+        <p>Browse our M.S. Flanges, E Table Flanges, Pipes, Fittings and watch industry educational videos about flanges and pipe fittings manufacturing.</p>
+        <div class="pg-badges">
+          <span class="pg-badge">M.S. Flanges</span>
+          <span class="pg-badge">E Table Flanges</span>
+          <span class="pg-badge">Pipe Fittings</span>
+          <span class="pg-badge">Industry Videos</span>
+        </div>
       </div>
     </section>
 
-    <section class="section-pad" style="background:white;">
+    <!-- ====== PRODUCT IMAGE GALLERY ====== -->
+    <section class="section-pad" style="background:white;" aria-labelledby="photo-gallery-heading">
       <div class="container">
 
-        <!-- GALLERY TABS -->
-        <div class="gallery-tabs">
-          <button class="gallery-tab active" data-tab="all">All</button>
-          <button class="gallery-tab" data-tab="flanges">Flanges</button>
-          <button class="gallery-tab" data-tab="etable">E Table Flanges</button>
-          <button class="gallery-tab" data-tab="pipes">Pipes</button>
-          <button class="gallery-tab" data-tab="fittings">Fittings</button>
-          <button class="gallery-tab" data-tab="factory">Factory</button>
+        <div class="section-title fade-in" style="text-align:left;margin-bottom:0;">
+          <span class="section-label">Product Photos</span>
+          <h2 id="photo-gallery-heading" style="text-align:left;">Our <span style="color:#5B8E1D;">Products</span> Gallery</h2>
+          <div class="title-bar" style="margin-left:0;"></div>
         </div>
 
-        <!-- GALLERY GRID -->
+        <!-- TABS -->
+        <div style="margin-top:22px;">
+          <div class="gallery-tabs" role="tablist" aria-label="Gallery filter">
+            <button class="gallery-tab active" data-tab="all" role="tab" aria-selected="true">All Products</button>
+            <button class="gallery-tab" data-tab="flanges" role="tab" aria-selected="false">MS Flanges</button>
+            <button class="gallery-tab" data-tab="etable" role="tab" aria-selected="false">E Table Flanges</button>
+            <button class="gallery-tab" data-tab="pipes" role="tab" aria-selected="false">Pipes</button>
+            <button class="gallery-tab" data-tab="fittings" role="tab" aria-selected="false">Pipe Fittings</button>
+          </div>
+        </div>
+
+        <!-- ── FLANGES ── -->
+        <div class="gallery-section-label" data-group="flanges"><span>M.S. Flanges</span></div>
         <div class="gallery-grid">
 
-          <!-- FLANGES -->
-          <div class="gallery-item span2 fade-in" data-cat="flanges" onclick="openLightbox(this)" role="button"
-            tabindex="0" aria-label="M.S. Flanges batch production">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="40" stroke="#5B8E1D" stroke-width="5" fill="#eef5e4" />
-              <circle cx="50" cy="50" r="24" stroke="#5B8E1D" stroke-width="4" fill="white" />
-              <circle cx="50" cy="50" r="10" fill="#5B8E1D" opacity="0.6" />
-              <circle cx="50" cy="14" r="4" fill="#3E3E3E" />
-              <circle cx="50" cy="86" r="4" fill="#3E3E3E" />
-              <circle cx="86" cy="50" r="4" fill="#3E3E3E" />
-              <circle cx="14" cy="50" r="4" fill="#3E3E3E" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24">
-                <path
-                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-              </svg></div>
-            <div class="gallery-label">M.S. Flanges — Batch Production</div>
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/alll-flanges.jpg" alt="All M.S. Flanges — Complete Range" loading="lazy">
+            <div class="gallery-label">All M.S. Flanges</div>
           </div>
 
-          <div class="gallery-item fade-in" data-cat="flanges" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="Blind Flanges">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="42" fill="#3E3E3E" opacity="0.5" />
-              <circle cx="50" cy="50" r="28" fill="#5B8E1D" opacity="0.4" />
-              <circle cx="50" cy="50" r="8" fill="white" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path
-                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5z" />
-              </svg></div>
-            <div class="gallery-label">Blind Flanges</div>
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/blind-pipe-flange.jpg" alt="Blind Pipe Flanges" loading="lazy">
+            <div class="gallery-label">Blind Pipe Flanges</div>
           </div>
 
-          <div class="gallery-item fade-in" data-cat="flanges" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="Welding Neck Flanges">
-            <svg viewBox="0 0 100 100">
-              <ellipse cx="50" cy="65" rx="38" ry="20" fill="#5B8E1D" opacity="0.35" />
-              <rect x="40" y="20" width="20" height="45" rx="4" fill="#5B8E1D" opacity="0.65" />
-              <circle cx="50" cy="65" r="14" fill="#3E3E3E" opacity="0.5" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/End-caps.webp" alt="End Caps" loading="lazy">
+            <div class="gallery-label">End Caps</div>
+          </div>
+
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/flat_flanges.png" alt="Flat Flanges — Slip On" loading="lazy">
+            <div class="gallery-label">Flat Flanges — Slip On</div>
+          </div>
+
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/flat-slip-flange.jpg" alt="Flat Slip-On Flanges" loading="lazy">
+            <div class="gallery-label">Flat Slip-On Flanges</div>
+          </div>
+
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/forged-flanges.jpg" alt="Forged Flanges — Heavy Duty" loading="lazy">
+            <div class="gallery-label">Forged Flanges</div>
+          </div>
+
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/ms-flanges.jpg" alt="M.S. Flanges — Standard Range" loading="lazy">
+            <div class="gallery-label">M.S. Flanges</div>
+          </div>
+
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/male-female-flange-1.jpg" alt="Male Female Flanges" loading="lazy">
+            <div class="gallery-label">Male Female Flanges</div>
+          </div>
+
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/Opening Flange.jpg" alt="Opening Flanges" loading="lazy">
+            <div class="gallery-label">Opening Flanges</div>
+          </div>
+
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/Ring Spacer Flange.jpg" alt="Ring Spacer Flanges" loading="lazy">
+            <div class="gallery-label">Ring Spacer Flanges</div>
+          </div>
+
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/socket-weld-flange.jpg" alt="Socket Weld Flanges" loading="lazy">
+            <div class="gallery-label">Socket Weld Flanges</div>
+          </div>
+
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/welding-neck-flanges.jpg" alt="Welding Neck Flanges" loading="lazy">
             <div class="gallery-label">Welding Neck Flanges</div>
           </div>
 
-          <!-- E TABLE -->
-          <div class="gallery-item fade-in" data-cat="etable" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="E Table Flanges IS:1538">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="42" stroke="#5B8E1D" stroke-width="7" fill="#eef5e4" />
-              <circle cx="50" cy="50" r="26" stroke="#5B8E1D" stroke-width="5" fill="white" />
-              <circle cx="50" cy="50" r="11" fill="#5B8E1D" />
-              <circle cx="50" cy="11" r="5.5" fill="#3E3E3E" />
-              <circle cx="88" cy="50" r="5.5" fill="#3E3E3E" />
-              <circle cx="50" cy="89" r="5.5" fill="#3E3E3E" />
-              <circle cx="12" cy="50" r="5.5" fill="#3E3E3E" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">E Table Flanges IS:1538</div>
+          <div class="gallery-item fade-in" data-cat="flanges">
+            <span class="product-badge-tag">Flanges</span>
+            <img src="assets/images/Spade Flange.jpg" alt="Spade Flanges" loading="lazy">
+            <div class="gallery-label">Spade Flanges</div>
           </div>
 
-          <div class="gallery-item span2 fade-in" data-cat="etable" onclick="openLightbox(this)" role="button"
-            tabindex="0" aria-label="E Table Flanges large diameter">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="44" stroke="#5B8E1D" stroke-width="6" fill="#eef5e4" />
-              <circle cx="50" cy="50" r="30" stroke="#5B8E1D" stroke-width="5" fill="white" />
-              <circle cx="50" cy="50" r="13" fill="#5B8E1D" opacity="0.7" />
-              <circle cx="50" cy="10" r="5" fill="#3E3E3E" />
-              <circle cx="50" cy="90" r="5" fill="#3E3E3E" />
-              <circle cx="10" cy="50" r="5" fill="#3E3E3E" />
-              <circle cx="90" cy="50" r="5" fill="#3E3E3E" />
-              <circle cx="71.2" cy="71.2" r="5" fill="#3E3E3E" />
-              <circle cx="28.8" cy="28.8" r="5" fill="#3E3E3E" />
-              <circle cx="71.2" cy="28.8" r="5" fill="#3E3E3E" />
-              <circle cx="28.8" cy="71.2" r="5" fill="#3E3E3E" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">E Table Flanges — Large Diameter</div>
+        </div><!-- /flanges grid -->
+
+        <!-- ── E TABLE FLANGES ── -->
+        <div class="gallery-section-label" data-group="etable"><span>E Table Flanges</span></div>
+        <div class="gallery-grid">
+
+          <div class="gallery-item fade-in" data-cat="etable">
+            <span class="product-badge-tag" style="background:#3E3E3E;">E Table</span>
+            <img src="assets/images/E-Table-Flange.jpg" alt="E Table Flanges IS:1538" loading="lazy">
+            <div class="gallery-label">E Table Flanges — IS:1538</div>
           </div>
 
-          <!-- FACTORY -->
-          <div class="gallery-item fade-in" data-cat="factory" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="Manufacturing floor Darukhana Mumbai">
-            <svg viewBox="0 0 100 100">
-              <rect x="10" y="40" width="80" height="50" fill="#3E3E3E" opacity="0.5" />
-              <polygon points="10,40 50,10 90,40" fill="#5B8E1D" opacity="0.6" />
-              <rect x="40" y="60" width="20" height="30" fill="#5B8E1D" opacity="0.5" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">Manufacturing Floor — Mumbai</div>
+        </div><!-- /etable grid -->
+
+        <!-- ── PIPES ── -->
+        <div class="gallery-section-label" data-group="pipes"><span>M.S. Pipes</span></div>
+        <div class="gallery-grid">
+
+          <div class="gallery-item fade-in" data-cat="pipes">
+            <span class="product-badge-tag" style="background:#1a6e99;">Pipes</span>
+            <img src="assets/images/MS-Round-Pipes.jpg" alt="M.S. Round Pipes ERW" loading="lazy">
+            <div class="gallery-label">M.S. Round Pipes — ERW</div>
           </div>
 
-          <div class="gallery-item fade-in" data-cat="factory" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="Machining workshop">
-            <svg viewBox="0 0 100 100">
-              <rect x="20" y="20" width="60" height="60" rx="4" fill="#3E3E3E" opacity="0.4" />
-              <circle cx="50" cy="50" r="20" fill="#5B8E1D" opacity="0.5" />
-              <rect x="46" y="20" width="8" height="60" fill="#5B8E1D" opacity="0.3" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">Machining Workshop</div>
+          <div class="gallery-item fade-in" data-cat="pipes">
+            <span class="product-badge-tag" style="background:#1a6e99;">Pipes</span>
+            <img src="assets/images/Ms-Square-Pipe.jpg" alt="M.S. Square Pipes SHS" loading="lazy">
+            <div class="gallery-label">M.S. Square Pipes — SHS</div>
           </div>
 
-          <div class="gallery-item fade-in" data-cat="factory" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="Quality inspection area">
-            <svg viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="35" fill="none" stroke="#5B8E1D" stroke-width="5" />
-              <path d="M35 50 L46 62 L65 38" stroke="#5B8E1D" stroke-width="6" fill="none" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">Quality Inspection Area</div>
+          <div class="gallery-item fade-in" data-cat="pipes">
+            <span class="product-badge-tag" style="background:#1a6e99;">Pipes</span>
+            <img src="assets/images/mild-steel-rectangle-pipe.jpg" alt="Mild Steel Rectangle Pipes" loading="lazy">
+            <div class="gallery-label">Mild Steel Rectangle Pipes</div>
           </div>
 
-          <div class="gallery-item span2 fade-in" data-cat="factory" onclick="openLightbox(this)" role="button"
-            tabindex="0" aria-label="Flange stock ready for dispatch">
-            <svg viewBox="0 0 200 100">
-              <circle cx="30" cy="55" r="30" stroke="#5B8E1D" stroke-width="4" fill="#eef5e4" />
-              <circle cx="30" cy="55" r="18" stroke="#5B8E1D" stroke-width="3" fill="white" />
-              <circle cx="30" cy="55" r="7" fill="#5B8E1D" opacity="0.5" />
-              <circle cx="100" cy="55" r="30" stroke="#5B8E1D" stroke-width="4" fill="#eef5e4" />
-              <circle cx="100" cy="55" r="18" stroke="#5B8E1D" stroke-width="3" fill="white" />
-              <circle cx="100" cy="55" r="7" fill="#5B8E1D" opacity="0.5" />
-              <circle cx="170" cy="55" r="30" stroke="#5B8E1D" stroke-width="4" fill="#eef5e4" />
-              <circle cx="170" cy="55" r="18" stroke="#5B8E1D" stroke-width="3" fill="white" />
-              <circle cx="170" cy="55" r="7" fill="#5B8E1D" opacity="0.5" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">Flanges Ready for Dispatch</div>
+        </div><!-- /pipes grid -->
+
+        <!-- ── FITTINGS ── -->
+        <div class="gallery-section-label" data-group="fittings"><span>Pipe Fittings</span></div>
+        <div class="gallery-grid">
+
+          <div class="gallery-item fade-in" data-cat="fittings">
+            <span class="product-badge-tag" style="background:#7a3b00;">Fittings</span>
+            <img src="assets/images/ms-elbow.webp" alt="M.S. Elbow Fittings 90°" loading="lazy">
+            <div class="gallery-label">M.S. Elbow Fittings — 90°</div>
           </div>
 
-          <!-- PIPES -->
-          <div class="gallery-item fade-in" data-cat="pipes" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="MS Square Pipes stock">
-            <svg viewBox="0 0 100 100">
-              <rect x="10" y="35" width="80" height="30" rx="3" fill="#5B8E1D" opacity="0.4" />
-              <rect x="5" y="30" width="10" height="40" rx="3" fill="#3E3E3E" opacity="0.6" />
-              <rect x="85" y="30" width="10" height="40" rx="3" fill="#3E3E3E" opacity="0.6" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">M.S. Square Pipes</div>
+          <div class="gallery-item fade-in" data-cat="fittings">
+            <span class="product-badge-tag" style="background:#7a3b00;">Fittings</span>
+            <img src="assets/images/ms-pipe-reducer.webp" alt="M.S. Pipe Reducers" loading="lazy">
+            <div class="gallery-label">M.S. Pipe Reducers</div>
           </div>
 
-          <div class="gallery-item fade-in" data-cat="pipes" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="MS Round Pipes ERW">
-            <svg viewBox="0 0 100 100">
-              <ellipse cx="50" cy="50" rx="40" ry="17" fill="#5B8E1D" opacity="0.25" stroke="#5B8E1D"
-                stroke-width="3" />
-              <ellipse cx="50" cy="50" rx="26" ry="9" fill="white" stroke="#5B8E1D" stroke-width="3" />
-              <line x1="10" y1="50" x2="90" y2="50" stroke="#5B8E1D" stroke-width="4" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">M.S. Round Pipes ERW</div>
+          <div class="gallery-item fade-in" data-cat="fittings">
+            <span class="product-badge-tag" style="background:#7a3b00;">Fittings</span>
+            <img src="assets/images/Stainless-Steel-Pipe-Tee-Fittings.jpg" alt="Pipe Tee Fittings" loading="lazy">
+            <div class="gallery-label">Pipe Tee Fittings</div>
           </div>
 
-          <!-- FITTINGS -->
-          <div class="gallery-item fade-in" data-cat="fittings" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="Elbow fittings 90 degree">
-            <svg viewBox="0 0 100 100">
-              <path d="M20 70 Q20 30 60 30" stroke="#5B8E1D" stroke-width="16" fill="none" stroke-linecap="round" />
-              <circle cx="20" cy="70" r="9" fill="#3E3E3E" />
-              <circle cx="60" cy="30" r="9" fill="#3E3E3E" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">90° Elbow Fittings</div>
-          </div>
+        </div><!-- /fittings grid -->
 
-          <div class="gallery-item fade-in" data-cat="fittings" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="Reducer pipe fittings">
-            <svg viewBox="0 0 100 100">
-              <rect x="55" y="30" width="30" height="16" rx="4" fill="#5B8E1D" opacity="0.55" />
-              <rect x="15" y="40" width="70" height="22" rx="4" fill="#5B8E1D" opacity="0.38" />
-              <rect x="5" y="37" width="13" height="28" rx="3" fill="#3E3E3E" opacity="0.6" />
-              <rect x="82" y="43" width="13" height="15" rx="3" fill="#3E3E3E" opacity="0.6" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">Reducer Fittings</div>
-          </div>
-
-          <div class="gallery-item fade-in" data-cat="fittings" onclick="openLightbox(this)" role="button" tabindex="0"
-            aria-label="Pipe fittings collection">
-            <svg viewBox="0 0 100 100">
-              <rect x="40" y="10" width="20" height="38" rx="4" fill="#5B8E1D" opacity="0.5" />
-              <rect x="10" y="48" width="80" height="20" rx="4" fill="#5B8E1D" opacity="0.4" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">Pipe Fittings Collection</div>
-          </div>
-
-          <div class="gallery-item span2 fade-in" data-cat="flanges" onclick="openLightbox(this)" role="button"
-            tabindex="0" aria-label="Forged flanges heavy duty">
-            <svg viewBox="0 0 200 100">
-              <circle cx="100" cy="50" r="42" fill="#eef5e4" stroke="#5B8E1D" stroke-width="6" />
-              <circle cx="100" cy="50" r="28" fill="white" stroke="#5B8E1D" stroke-width="4" />
-              <ellipse cx="100" cy="50" rx="13" ry="10" fill="#5B8E1D" opacity="0.5" />
-              <circle cx="100" cy="11" r="6" fill="#3E3E3E" />
-              <circle cx="100" cy="89" r="6" fill="#3E3E3E" />
-              <circle cx="141" cy="50" r="6" fill="#3E3E3E" />
-              <circle cx="59" cy="50" r="6" fill="#3E3E3E" />
-              <circle cx="130" cy="20" r="6" fill="#3E3E3E" />
-              <circle cx="70" cy="80" r="6" fill="#3E3E3E" />
-              <circle cx="130" cy="80" r="6" fill="#3E3E3E" />
-              <circle cx="70" cy="20" r="6" fill="#3E3E3E" />
-            </svg>
-            <div class="gallery-overlay"><svg viewBox="0 0 24 24" fill="white">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16z" />
-              </svg></div>
-            <div class="gallery-label">Forged Flanges — Heavy Duty</div>
-          </div>
-
-        </div>
       </div>
     </section>
 
-    <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
-      <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
-      <div class="lb-content">
-        <svg viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="38" stroke="#5B8E1D" stroke-width="5" fill="#eef5e4" />
-          <circle cx="50" cy="50" r="22" stroke="#5B8E1D" stroke-width="4" fill="white" />
-          <circle cx="50" cy="50" r="9" fill="#5B8E1D" opacity="0.6" />
-        </svg>
+    <!-- ====== YOUTUBE VIDEOS SECTION ====== -->
+    <section class="video-section" aria-labelledby="video-heading">
+      <div class="container">
+
+        <div class="video-section-title fade-in">
+          <h2 id="video-heading">Industry <span>Knowledge Videos</span></h2>
+          <div class="video-title-bar"></div>
+          <p>Educational videos on flange types, pipe fittings manufacturing and industrial piping — curated for our clients and project engineers.</p>
+        </div>
+
+        <div class="video-grid">
+
+          <div class="video-card fade-in" onclick="openVideo('SvNBQfnt1fo','Flange Types — Threaded, Socket-Weld, Slip-On, Lap Joint, Weld Neck, Blind')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/SvNBQfnt1fo/mqdefault.jpg" alt="Types of Flanges Explained" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~3 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Flanges</span>
+              <p class="video-title">Flange Types — Threaded, Socket-Weld, Slip-On, Weld Neck, Blind</p>
+            </div>
+          </div>
+
+          <div class="video-card fade-in" onclick="openVideo('d1JizTH-gGk','M.S. Flange Manufacturing Process — Cutting, Machining, Drilling')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/d1JizTH-gGk/mqdefault.jpg" alt="Flange Manufacturing Process" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~4 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Manufacturing</span>
+              <p class="video-title">M.S. Flange Manufacturing Process — Cutting, Machining, Drilling</p>
+            </div>
+          </div>
+
+          <div class="video-card fade-in" onclick="openVideo('3Rq8zhFOW6E','Pipe Flanges 101 — Weld Neck, Slip-On, Socket Weld, Blind Flanges Basics')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/3Rq8zhFOW6E/mqdefault.jpg" alt="Pipe Flanges 101" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~4 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Flanges</span>
+              <p class="video-title">Pipe Flanges 101 — Weld Neck, Slip-On, Socket Weld, Blind</p>
+            </div>
+          </div>
+
+          <div class="video-card fade-in" onclick="openVideo('Xo60anxN8nw','Flanges in Oil & Gas — Types & Applications Explained')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/Xo60anxN8nw/mqdefault.jpg" alt="Flanges in Oil and Gas Industry" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~4 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Oil &amp; Gas</span>
+              <p class="video-title">Flanges in Oil &amp; Gas — Types &amp; Applications Explained</p>
+            </div>
+          </div>
+
+          <div class="video-card fade-in" onclick="openVideo('UM-LzCKbtIo','Elbow Manufacturing Process — Pipe Fittings')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/UM-LzCKbtIo/mqdefault.jpg" alt="Elbow Manufacturing Process" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~3 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Fittings</span>
+              <p class="video-title">Elbow Manufacturing Process — Pipe Fittings</p>
+            </div>
+          </div>
+
+          <div class="video-card fade-in" onclick="openVideo('OqFqZMMRfp0','Pipe Fittings Manufacturing — Elbow, Reducer, Tee')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/OqFqZMMRfp0/mqdefault.jpg" alt="Pipe Fittings Manufacturing Process" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~4 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Manufacturing</span>
+              <p class="video-title">Pipe Fittings Manufacturing — Elbow, Reducer, Tee</p>
+            </div>
+          </div>
+
+          <div class="video-card fade-in" onclick="openVideo('3tvAJnXFS_s','Reducer, Cap & Stub End Manufacturing — Pipe Fittings')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/3tvAJnXFS_s/mqdefault.jpg" alt="Reducer Cap Stub End Manufacturing" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~3 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Fittings</span>
+              <p class="video-title">Reducer, Cap &amp; Stub End Manufacturing Process</p>
+            </div>
+          </div>
+
+          <div class="video-card fade-in" onclick="openVideo('LRX8-Jfoivc','Six Main Types of Flanges Used in Piping — Explained')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/LRX8-Jfoivc/mqdefault.jpg" alt="Six Main Types of Flanges in Piping" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~4 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Flanges</span>
+              <p class="video-title">Six Main Types of Flanges Used in Piping — Explained</p>
+            </div>
+          </div>
+
+          <div class="video-card fade-in" onclick="openVideo('t7TeEKQov-c','Pipe Fittings Basics — Elbows, Miter Bends & Returns')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/t7TeEKQov-c/mqdefault.jpg" alt="Pipe Fittings Elbow Basics" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~4 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Fittings</span>
+              <p class="video-title">Pipe Fittings Basics — Elbows, Miter Bends &amp; Returns</p>
+            </div>
+          </div>
+
+          <div class="video-card fade-in" onclick="openVideo('U9qB8DXAiBM','Flange Production Process — Forging, Machining & Quality')">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/U9qB8DXAiBM/mqdefault.jpg" alt="Flange Production Process" loading="lazy">
+              <div class="video-play-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+              <span class="video-duration">~3 min</span>
+            </div>
+            <div class="video-info">
+              <span class="video-tag">Manufacturing</span>
+              <p class="video-title">Flange Production Process — Forging, Machining &amp; Quality Check</p>
+            </div>
+          </div>
+
+        </div><!-- /video-grid -->
+      </div>
+    </section>
+
+    <!-- VIDEO MODAL -->
+    <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Video player">
+      <div class="video-modal-inner">
+        <button class="vm-close" id="vm-close" aria-label="Close video">&times;</button>
+        <div class="video-modal-frame">
+          <iframe id="vm-iframe" src="" title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <div class="video-modal-title"><p id="vm-title"></p></div>
       </div>
     </div>
 
     <!-- CTA -->
-    <section class="cta-banner">
+    <section class="cta-banner" aria-label="Contact call to action">
       <div class="container">
         <h2>Interested in Our Products?</h2>
-        <p>Contact us for pricing, specifications and bulk quotations on all M.S. Flanges, Pipes and Fittings.</p>
+        <p>Contact us for pricing, specifications and bulk quotations on M.S. Flanges, Pipes and Industrial Fittings.</p>
         <div class="cta-buttons">
           <a href="contact.html" class="btn btn-outline">Get a Quote</a>
-          <a href="products.html" class="btn" style="background:white;color:var(--green);border:2px solid white;">View
-            All Products</a>
+          <a href="products.html" class="btn" style="background:white;color:#5B8E1D;border:2px solid white;">View All Products</a>
         </div>
       </div>
     </section>
@@ -358,104 +729,153 @@
   </main>
 
   <!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <img src="assets/images/logo.png" alt="I.S. Engineering Co. Logo" width="50" height="50">
-          <!-- <svg class="footer-logo-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <rect x="18" y="10" width="14" height="72" rx="2" fill="#808080"/>
-            <text x="36" y="78" font-family="Arial Black,sans-serif" font-size="66" font-weight="900" fill="#5B8E1D">S</text>
-            <circle cx="88" cy="22" r="14" fill="#5B8E1D"/>
-            <circle cx="88" cy="22" r="7" fill="white"/>
-            <rect x="85" y="6" width="6" height="5" rx="1" fill="#5B8E1D"/>
-            <rect x="85" y="33" width="6" height="5" rx="1" fill="#5B8E1D"/>
-            <rect x="72" y="19" width="5" height="6" rx="1" fill="#5B8E1D"/>
-            <rect x="99" y="19" width="5" height="6" rx="1" fill="#5B8E1D"/>
-            <path d="M12 86 Q60 96 108 82" stroke="#808080" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-            <path d="M12 91 Q60 103 108 88" stroke="#5B8E1D" stroke-width="3" fill="none" stroke-linecap="round"/>
-          </svg> -->
-          <div><div class="footer-logo-name">I.S. Engineering Co.</div><div class="footer-logo-sub">Manufacturer &amp; Supplier</div></div>
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="assets/images/logo.png" alt="I.S. Engineering Co. Logo" width="50" height="50">
+            <div>
+              <div class="footer-logo-name">I.S. Engineering Co.</div>
+              <div class="footer-logo-sub">Manufacturer &amp; Supplier</div>
+            </div>
+          </div>
+          <p>Trusted manufacturer and supplier of M.S. Flanges, E Table Flanges, M.S. Pipes and Industrial Pipe Fittings in Mumbai since 1999.</p>
+          <div class="footer-gstin">GSTIN: <span>27AMZPK5174G1ZE</span></div>
         </div>
-        <p>Trusted manufacturer and supplier of M.S. Flanges, E Table Flanges, M.S. Pipes and Industrial Pipe Fittings in Mumbai since 1999. Serving industries across India for over 25 years.</p>
-        <div class="footer-gstin">GSTIN: <span>27AMZPK5174G1ZE</span></div>
-      </div>
-      <div class="footer-col">
-        <h5>Quick Links</h5>
-        <div class="footer-links">
-          <a href="index.html">Home</a>
-          <a href="about.html">About Us</a>
-          <a href="products.html">Products</a>
-          <a href="gallery.html">Gallery</a>
-          <a href="contact.html">Contact Us</a>
-          <a href="contact.html">Get a Quote</a>
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="products.html">Products</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="contact.html">Get a Quote</a>
+          </div>
         </div>
-      </div>
-      <div class="footer-col">
-        <h5>Products</h5>
-        <div class="footer-links">
-          <a href="products.html">M.S. Flanges</a>
-          <a href="products.html">E Table Flanges</a>
-          <a href="products.html">Blind Flanges</a>
-          <a href="products.html">Welding Neck Flanges</a>
-          <a href="products.html">Square Pipes</a>
-          <a href="products.html">Round Pipes</a>
-          <a href="products.html">Elbow Fittings</a>
-          <a href="products.html">Reducer Fittings</a>
+        <div class="footer-col">
+          <h5>Products</h5>
+          <div class="footer-links">
+            <a href="products.html">M.S. Flanges</a>
+            <a href="products.html">E Table Flanges</a>
+            <a href="products.html">Blind Flanges</a>
+            <a href="products.html">Welding Neck Flanges</a>
+            <a href="products.html">Square Pipes</a>
+            <a href="products.html">Round Pipes</a>
+            <a href="products.html">Elbow Fittings</a>
+            <a href="products.html">Reducer Fittings</a>
+          </div>
         </div>
-      </div>
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <div class="footer-contact-list">
-          <div class="fc-item"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><div><a href="tel:+918355815350">+91 83558 15350</a><br><a href="tel:+919137332945">+91 91373 32945</a></div></div>
-          <div class="fc-item"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:info.isengineering.co@gmail.com">info.isengineering.co@gmail.com</a></div>
-          <div class="fc-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg><span>Gala No 10, Plot 255, Mehta Lane, Darukhana, Mumbai – 400010</span></div>
-          <div class="fc-item"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg><a href="https://isengineeringco.in" target="_blank">isengineeringco.in</a></div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-list">
+            <div class="fc-item">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+              <div><a href="tel:+918355815350">+91 83558 15350</a><br><a href="tel:+919137332945">+91 91373 32945</a></div>
+            </div>
+            <div class="fc-item">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <a href="mailto:info.isengineering.co@gmail.com">info.isengineering.co@gmail.com</a>
+            </div>
+            <div class="fc-item">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg>
+              <span>Gala No 10, Plot 255, Mehta Lane, Darukhana, Mumbai – 400010</span>
+            </div>
+            <div class="fc-item">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+              <a href="https://isengineeringco.in" target="_blank" rel="noopener">isengineeringco.in</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="footer-bottom">
-      <span>&copy; 2025 I.S. Engineering Co. All Rights Reserved. | GSTIN: 27AMZPK5174G1ZE</span>
-      <span>M.S. Flanges Manufacturer in Mumbai | <a href="index.html">isengineeringco.in</a></span>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2025 I.S. Engineering Co. All Rights Reserved. | GSTIN: 27AMZPK5174G1ZE</span>
+        <span>M.S. Flanges Manufacturer in Mumbai | <a href="index.html">isengineeringco.in</a></span>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
+  <!-- FLOATING ACTIONS -->
   <div class="floating-actions">
-    <a href="https://wa.me/918355815350" class="float-btn float-wa" target="_blank"><svg viewBox="0 0 24 24"
-        fill="white">
-        <path
-          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
-      </svg></a>
-    <a href="tel:+918355815350" class="float-btn float-call"><svg viewBox="0 0 24 24" fill="white">
-        <path
-          d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
-      </svg></a>
-    <button class="float-btn back-top"><svg viewBox="0 0 24 24" fill="white">
-        <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
-      </svg></button>
+    <a href="https://wa.me/918355815350?text=Hello%2C%20I%20am%20interested%20in%20M.S.%20Flanges%20and%20Pipe%20Fittings.%20Please%20share%20your%20quotation."
+       class="float-btn float-wa" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" fill="white"/></svg>
+    </a>
+    <a href="tel:+918355815350" class="float-btn float-call" aria-label="Call Us">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="white"/></svg>
+    </a>
+    <button class="float-btn back-top" id="back-top" aria-label="Back to Top">
+      <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" fill="white"/></svg>
+    </button>
   </div>
 
+  <script src="js/script.js"></script>
   <script>
-    function openLightbox(el) {
-      document.getElementById('lightbox').classList.add('active');
+    /* ── GALLERY TABS FILTER ── */
+    const tabs = document.querySelectorAll('.gallery-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+        this.classList.add('active');
+        this.setAttribute('aria-selected','true');
+        const cat = this.dataset.tab;
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          item.style.display = (cat === 'all' || item.dataset.cat === cat) ? 'flex' : 'none';
+        });
+        document.querySelectorAll('.gallery-section-label').forEach(label => {
+          if (cat === 'all') {
+            label.style.display = 'flex';
+          } else {
+            label.style.display = (label.dataset.group === cat) ? 'flex' : 'none';
+          }
+        });
+      });
+    });
+
+    /* ── VIDEO MODAL ── */
+    function openVideo(videoId, title) {
+      document.getElementById('vm-iframe').src =
+        'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0&modestbranding=1';
+      document.getElementById('vm-title').textContent = title;
+      document.getElementById('video-modal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
-    document.getElementById('lb-close').addEventListener('click', function () {
-      document.getElementById('lightbox').classList.remove('active');
+    document.getElementById('vm-close').addEventListener('click', closeVideo);
+    document.getElementById('video-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeVideo();
+    });
+    function closeVideo() {
+      document.getElementById('video-modal').classList.remove('active');
+      document.getElementById('vm-iframe').src = '';
       document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeVideo();
     });
-    document.getElementById('lightbox').addEventListener('click', function (e) {
-      if (e.target === this) { this.classList.remove('active'); document.body.style.overflow = ''; }
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
-    });
-  </script>
-  <script src="js/script.js"></script>
-</body>
 
+    /* ── BACK TO TOP ── */
+    window.addEventListener('scroll', function() {
+      const btn = document.getElementById('back-top');
+      if (btn) btn.classList.toggle('show', window.scrollY > 300);
+    });
+    document.getElementById('back-top').addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ── FADE IN ON SCROLL ── */
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
 </html>
